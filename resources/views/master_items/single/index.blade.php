@@ -13,6 +13,17 @@
                 <div class="card-body">
                     <table>
                         <tr>
+                            <th>Foto</th>
+                            <th>:</th>
+                            <td>
+                                @if ($data->foto)
+                                    <img src="{{ asset('storage/' . $data->foto) }}" alt="Foto {{ $data->nama }}" class="img-thumbnail" style="max-width: 20px;">
+                                @else
+                                    Tidak ada foto
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
                             <th>Nama</th>
                             <td>:</td>
                             <td>{{$data->nama}}</td>
@@ -41,6 +52,11 @@
                             <th>Jenis</th>
                             <td>:</td>
                             <td>{{$data->jenis}}</td>
+                        </tr>
+                        <tr>
+                            <th>Kategori</th>
+                            <td>:</td>
+                            <td>{{ $data->kategoriItems->pluck('nama')->implode(', ') ?: '-' }}</td>
                         </tr>
                     </table>
                     <a class="btn btn-info" href="{{url('master-items/form/edit')}}/{{$data->id}}">Edit</a>

@@ -6,6 +6,10 @@
         <div class="col-md-8">
             <div class="form-group mb-2">
                 <a href="{{url('master-items/form/new')}}" class="btn btn-secondary">+ Master Items Baru</a>
+                <a href="{{ url('master-items/export-excel') }}"
+                class="btn btn-success">
+                    Download Excel
+                </a>
             </div>
             <div class="card">
                 <div class="card-header">Daftar Master Items</div>

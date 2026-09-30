@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\KategoriItemsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +33,14 @@ Route::get('/master-items/delete/{id}', [App\Http\Controllers\MasterItemsControl
 
 
 Route::get('/master-items/update-random-data', [App\Http\Controllers\MasterItemsController::class, 'updateRandomData']);
+
+Route::get('/kategori-items', [App\Http\Controllers\KategoriItemsController::class, 'index']);
+Route::get('/kategori-items/search', [App\Http\Controllers\KategoriItemsController::class, 'search']);
+Route::get('/kategori-items/form/{method}/{id?}', [App\Http\Controllers\KategoriItemsController::class, 'formView']);
+Route::post('/kategori-items/form/{method}/{id?}', [App\Http\Controllers\KategoriItemsController::class, 'formSubmit']);
+Route::get('/kategori-items/delete/{id}', [App\Http\Controllers\KategoriItemsController::class, 'delete']);
+
+Route::get('/kategori-items/view/{kode}', [App\Http\Controllers\KategoriItemsController::class, 'singleView']);
+Route::get('/kategori-items/view/{kode}/pdf', [App\Http\Controllers\KategoriItemsController::class, 'downloadPdf']);
+
+Route::get('/master-items/export-excel', [App\Http\Controllers\MasterItemsController::class, 'exportExcel']);

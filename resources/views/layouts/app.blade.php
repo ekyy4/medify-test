@@ -32,7 +32,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a href="{{ url('master-items') }}" class="nav-link">Master Item</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('kategori-items') }}" class="nav-link">Kategori</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

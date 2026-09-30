@@ -1,4 +1,4 @@
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     @csrf
     @if($method == 'edit')
     <div class="form-group">
@@ -20,6 +20,19 @@
     <div class="form-group">
         <label>Laba (dalam persen)</label>
         <input type="number" class="form-control" name="laba" required  value="{{$item->laba ?? ''}}">
+    </div>
+
+    <div class="form-group">
+        <label for="">Foto</label>
+        <input type="file" class="form-control" name="foto" value="{{ $item->foto ?? '' }}" accept="image/jpeg,image/png,image/webp">
+
+        @error('foto')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+
+        @if (!empty($item->foto))
+            <img src="{{ asset('storage/' . $item->foto) }}" alt="Foto {{ $item->nama }}" class="img-thumbnail mt-2" style="max-width: 150px;">
+        @endif
     </div>
 
     @php $selected = $item->supplier ?? ''; @endphp
@@ -48,6 +61,27 @@
         </select>
     </div>
 
+    <div class="form-group">
+        <label>Kategori Item</label>
+
+        @forelse($kategori_items as $kategori)
+            <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="kategori_items[]"
+                    id="kategori-{{ $kategori->id }}"
+                    value="{{ $kategori->id }}"
+                    @if(in_array($kategori->id, old('kategori_items', $kategori_terpilih))) checked @endif
+                >
+                <label class="form-check-label" for="kategori-{{ $kategori->id }}">
+                    {{ $kategori->nama }}
+                </label>
+            </div>
+        @empty
+            <div class="text-muted">Belum ada kategori item.</div>
+        @endforelse
+    </div>
     <button class="btn btn-primary mt-3">Submit</button>
 
 </form>
